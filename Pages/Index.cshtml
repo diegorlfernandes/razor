@@ -1,0 +1,42 @@
+﻿@page
+@model RazorPagesPagination.Pages.IndexModel
+
+<form method="post" class="container border text-left pt-2 mb-3">
+    <div class="form-row form-group">
+        <div class="col">
+            <input type="button"  value="Inserir" onclick="this.form.submit('teste')">
+            <input type="text" name="input1" value="Message" >
+        </div>
+    </div>
+</form>
+
+<form method="post" class="container border text-left pt-2 mb-3">
+
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+		<tr>
+			<th>
+				Id
+			</th>
+			<th>
+				Message
+			</th>
+			<th>
+				Ações
+			</th>
+		</tr>
+	</thead>
+    @foreach (Message item in Model.Items)
+    {
+        <tr>
+            <td>@item.id</td>
+            <td>@item.message</td>
+            <td>
+                <a asp-page="./" onclick="return confirm('Are you sure you want to delete this item?');" asp-page-handler="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+
+        </tr>
+    }
+</table>				
+
+</form>
